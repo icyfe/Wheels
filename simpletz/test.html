@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .box {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            width: 200px;
+            height: 200px;
+            background: pink
+        }
+    </style>
+</head>
+
+<body>
+    <div id='tz' class="box">
+
+    </div>
+</body>
+<script>
+    let box = document.getElementById('tz');
+    let boxX, boxY, mouseX, mouseY;
+    let ismouse = false
+    box.addEventListener('mousedown', function (e) {
+        boxX = this.offsetLeft;
+        boxY = this.offsetTop;
+        mouseX = e.clientX
+        mouseY = e.clientY
+        console.log(this.offsetLeft, this.offsetTop, e.clientX, e.clientY)
+        ismouse = true
+    })
+    box.addEventListener('mousemove', function (e) {
+        if (!ismouse) return
+        console.log('mousemove')
+        let mouseX1 = e.clientX
+        let mouseY1 = e.clientY
+        let x = boxX + (mouseX1 - mouseX)
+        let y = boxY + (mouseY1 - mouseY)
+        console.log(boxX, boxY)
+        box.style.top = y + 'px'
+        box.style.left = x + 'px'
+    })
+    box.addEventListener("mouseup", function () {
+        ismouse = false
+    })
+</script>
+
+</html>
