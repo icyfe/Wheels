@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>固定在顶部</title>
+    <style>
+        body {
+            height: 3000px;
+            background-color: #eee;
+            margin: 0;
+        }
+
+        #sticky {
+            width: 800px;
+            height: 100px;
+            background-color: #3498db;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rule {
+            height: 300px;
+            width: 60px;
+            background-color: #1abc9c;
+            text-align: center;
+            line-height: 300px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rule">
+        300px
+    </div>
+    <div id="sticky"></div>
+    <script type="text/javascript" src="./index.js"></script>
+    <script>
+        window.onload = function () {
+            var element = document.getElementById("sticky");
+
+            var sticky = new Sticky(element)
+        }
+    </script>
+</body>
+
+</html>
