@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            /* overflow: hidden; */
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: burlywood;
+        }
+
+        .progress-main {
+            position: absolute;
+            width: 80%;
+            height: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .progress-inner {
+            position: relative;
+            width: 100%;
+            height: 10px;
+            background: gray;
+        }
+
+        .progress-speed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 10px;
+            background: brown;
+            z-index: 99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="progress-wrap" id='loadPage'>
+            <div class="progress-main">
+                <div class="progress-inner"></div>
+                <div id='loading-progress' class="progress-speed"></div>
+                <span id='loading-num'></span>
+            </div>
+        </div>
+        <div class="wrap">加载完毕.</div>
+    </div>
+</body>
+<script src="index.js"></script>
+<script>
+    var pics = [
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/1.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/2.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/3.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/4.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/5.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/6.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/7.jpeg",
+        "https://raw.githubusercontent.com/mqyqingfeng/Preload/master/docs/img/8.jpeg"
+    ]
+
+    var preload = new Preload(pics, {
+        complete: function (successNum, failNum) {
+            setTimeout(function () {
+                document.getElementById("loadPage").style.display = 'none'
+            }, 500)
+        },
+        progress: function (index, total, type) {
+            setTimeout(() => {
+                var progress = document.getElementById("loading-progress");
+                var num = document.getElementById("loading-num");
+
+                var percent = Math.floor(index / total * 100) + '%'
+
+                num.innerHTML = progress.style.width = percent;
+            }, 300)
+
+        }
+    });
+</script>
+
+</html>
